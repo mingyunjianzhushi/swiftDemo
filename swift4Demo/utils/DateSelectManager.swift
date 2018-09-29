@@ -16,7 +16,7 @@ public class DateSelectManager: UIView {
 	/*标识*/
 	var identity : String?
 	/**返回数据的格式*/
-	var backDateFormatStr : DateformatStr?
+	var backDateFormatStr : String?
 	/** 起止日期选择view里的起始日期 */
 	var datePicker : UIDatePicker?
 	/**回调代理*/
@@ -41,18 +41,13 @@ public class DateSelectManager: UIView {
 			self.dateBgView?.isHidden = false
 		}
 		
-		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeFromCurrentView))
+		let tapGesture = UITapGestureRecognizer(target: self, action: #selector(removeFromCurrentView(gesture:)))
 		self.addGestureRecognizer(tapGesture)
 	}
 	
 	class func showDateView(delegate:DateSelectManagerDelegate , identity:String,tipStr:String,datePickerMode:UIDatePickerMode) -> DateSelectManager{
 		let dateSelectManager = DateSelectManager(delegate: delegate, identity: identity, tipStr: tipStr, datePickerMode: datePickerMode)
 		return dateSelectManager
-	}
-	
-	
-	@objc func removeFromCurrentView(){
-		
 	}
 	
 	func createDateView(){
@@ -128,12 +123,41 @@ public class DateSelectManager: UIView {
 		
 	}
 	
+	//点击后移除控件
+	@objc func removeFromCurrentView(gesture:UIGestureRecognizer){
+//		let subView = self.viewWithTag(99)
+//		let shadowView = self
+//
+//		if ((subView?.frame)?.contains(gesture.location(in: shadowView)))! {
+//
+//		}else{
+			removeSelfFromSuperview()
+//		}
+	}
+	
+	func removeSelfFromSuperview(){
+		UIView.animate(withDuration: 0.2, animations: {
+			self.alpha = 0
+		}) { (finished) in
+			self.removeSelfFromSuperview()
+		}
+	}
+	
   	@objc	func clickDateViewCancelButton(){
-		
+		removeSelfFromSuperview()
 	}
 	
 	@objc	func clickDateViewEnsureBtnButton(){
+		var timeString = self.datePicker?.date.getString(format: DATE_TIME)
+		if self.backDateFormatStr != nil {
+			timeString = self.datePicker?.date.getString(format: self.backDateFormatStr!)
+		}
 		
+		if self.delegate != nil {
+			self.delegate?.getDateWithDateSelectManager(dataView: self, resultDateString: timeString!)
+		}
+		
+		removeSelfFromSuperview()
 	}
 }
 

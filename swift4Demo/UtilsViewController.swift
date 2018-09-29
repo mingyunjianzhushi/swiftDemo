@@ -9,6 +9,10 @@
 import UIKit
 
 class UtilsViewController: UIViewController , DateSelectManagerDelegate{
+	
+	deinit {
+		print("死啦")
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +29,6 @@ class UtilsViewController: UIViewController , DateSelectManagerDelegate{
 			make.size.equalTo(CGSize(width: 100, height: 30))
 			make.centerX.equalTo(self.view.snp.centerX)
 		}
-		
-		
-        // Do any additional setup after loading the view.
     }
 	
 	//label验证器
@@ -47,7 +48,10 @@ class UtilsViewController: UIViewController , DateSelectManagerDelegate{
 //			}
 //		}
 		
-		
+		//获取网络时间
+		getInterDate { (date) in
+			print(date!)
+		}
 		
 	}
 	
@@ -71,22 +75,12 @@ class UtilsViewController: UIViewController , DateSelectManagerDelegate{
 	
 	@objc func dateDemo(){
 		let datePicker = DateSelectManager.showDateView(delegate:self, identity: "time", tipStr: "", datePickerMode: .date)
-		datePicker.backDateFormatStr = .DATE_TIME
+		datePicker.backDateFormatStr = MONTH_DAY_CHINA
 	}
 	
+	//时间选择器回调
 	func getDateWithDateSelectManager(dataView: DateSelectManager, resultDateString: String) {
-		
+		print(resultDateString)
 	}
-	
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

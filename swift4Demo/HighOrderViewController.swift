@@ -9,6 +9,10 @@
 import UIKit
 
 class HighOrderViewController: UIViewController {
+	
+	deinit {
+		print("死啦")
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()

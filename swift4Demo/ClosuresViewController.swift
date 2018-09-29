@@ -32,6 +32,12 @@ class ClosuresViewController: UIViewController {
 			make.height.equalTo(50);
 		}
 		
+		self.methodName(duration: 0.2, animations: {
+			
+		}) { (fineds) in
+			
+		}
+		
 		
         // Do any additional setup after loading the view.
     }
@@ -60,6 +66,11 @@ class ClosuresViewController: UIViewController {
 		DispatchQueue.main.async {
 			block()
 		}
+	}
+	
+	//多个参数的情况
+	func methodName(duration:TimeInterval,animations:() -> Void,completion:(Bool) ->Void){
+		
 	}
 	
 	

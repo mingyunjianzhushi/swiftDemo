@@ -16,6 +16,9 @@ class StringViewController: UIViewController {
 		stringFuncBase()
 		ModifyStringDemo()
 		removeAndReplaceDemo()
+		subString()
+		replace()
+		stringContainst()
     }
 	
 	/*
@@ -188,6 +191,30 @@ class StringViewController: UIViewController {
 	   str.replaceSubrange(startIndex...endIndex, with: "啦啦啦啦")
 		print("替换后\(str)")
 		
+	}
+	
+	
+	//字符串截取
+	func subString(){
+		let str = "Sat, 29 Sep 2018 02:34:52 GMT"
+		let index1 = str.index(str.startIndex, offsetBy: 5)   //获取索引
+		let index2 = str.index(str.endIndex, offsetBy: -4)
+		let res = str[index1..<index2]
+		print(res)
+//		let re = str.subStr(fromIndex: 6)
+	}
+	
+	//判断文字包含
+	func stringContainst(){
+		let str = "fafdafa"
+		let result = str.contains("af")
+		print(result)
+	}
+	
+	func replace(){
+		let str = "abcdefghi"
+		let result = str.replacingOccurrences(of:"abc", with:"m")
+		print(result)
 	}
 
 }

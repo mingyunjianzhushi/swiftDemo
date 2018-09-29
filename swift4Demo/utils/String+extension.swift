@@ -43,6 +43,15 @@ extension String{
 		return beginSpace + self.removeHeadAndTailSpacePro
 	}
 	
+	/*
+	*url编码
+	*/
+	
+	
+	var  URLCoding : String{
+		return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+	}
+	
 	func getHeight(width:CGFloat,font:UIFont)->CGFloat{
 		let size = CGSize(width: width, height: CGFloat(MAXFLOAT))
 		let rect = NSString(string: self).boundingRect(with: size, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : font], context: nil)
@@ -103,12 +112,12 @@ extension String{
 		return date2.compare(date1) == .orderedAscending
 	}
 	
-	func subStr(fromIndex:Int)->String{
-		let start = self.index(self.startIndex, offsetBy: fromIndex)
-		return String(self.suffix(from: start))
-	}
-	func subStr(toIndex:Int)->String{
-		let end = self.index(self.startIndex, offsetBy: toIndex)
-		return String(self.prefix(upTo: end))
-	}
+//	func subStr(fromIndex:Int)->String{
+//		let start = self.index(self.startIndex, offsetBy: fromIndex)
+//		return String(self.suffix(from: start))
+//	}
+//	func subStr(toIndex:Int)->String{
+//		let end = self.index(self.startIndex, offsetBy: toIndex)
+//		return String(self.prefix(upTo: end))
+//	}
 }
