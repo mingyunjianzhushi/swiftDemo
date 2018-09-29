@@ -13,10 +13,11 @@ protocol btnClickDelegate {
 }
 
 class ProtocolViewController: UIViewController {
-
+	var str : String?
 	var delegate:btnClickDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
+		print(str)
 		let btn = UIButton(type: .custom);
 		btn.backgroundColor = UIColor.gray;
 		btn.setTitle("点击回调", for: .normal);

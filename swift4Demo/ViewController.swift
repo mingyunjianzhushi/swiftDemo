@@ -165,6 +165,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 			//这里需要指定类的类型XX.Type
 			let controllerClass = NSClassFromString(className) as? ProtocolViewController.Type;
 			let controller = controllerClass!.init()
+			controller.setValue("str", forKey: "str")
 			controller.delegate = self
 			controller.navigationItem.title = itemData?.name
 			self.navigationController?.pushViewController(controller, animated: false);
